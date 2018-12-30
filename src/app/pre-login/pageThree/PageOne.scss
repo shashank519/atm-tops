@@ -1,0 +1,23 @@
+.form-panel {
+  .pre-login-card {
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: black 0px 9px 30px -3px;
+    .ant-form.ant-form-horizontal {
+      margin: 10px;
+    }
+
+    .pl-form {
+      margin: 30px 10px;
+
+      .agreed-field {
+        display: flex;
+        align-items: center;
+
+        label {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.form-panel {
+  width: "500px";
+
+  .ant-card.pre-login-reg-card.ant-card-bordered {
+    border: 1px solid black;
+    box-shadow: black 0px 9px 30px -3px;
+    border-radius: 4px;
+
+    .pl-reg-form {
+      margin: 30px 10px;
+    }
+  }
+}
