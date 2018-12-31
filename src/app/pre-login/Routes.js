@@ -5,7 +5,7 @@ const PageOne = React.lazy(() => import("./pageOne"));
 const PageTwo = React.lazy(() => import("./pageTwo"));
 const PageThree = React.lazy(() => import("./pageThree"));
 
-class PreLoginRoutes extends Component {
+class AtmRoutes extends Component {
   render() {
     return (
       <div>
@@ -21,4 +21,4 @@ class PreLoginRoutes extends Component {
   }
 }
 
-export default PreLoginRoutes;
+export default AtmRoutes;

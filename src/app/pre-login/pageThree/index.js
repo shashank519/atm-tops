@@ -1,25 +1,27 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { Form, Button, Card } from "antd";
 
-import { Form, Input, Button, Card } from "antd";
+import history from "Utils/history";
 
 import "./PageOne.scss";
 
 const FormItem = Form.Item;
 
 class PageThree extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
-    });
+  constructor(props) {
+    super(props);
+    if (this.props.deductedAmount < 500) {
+      history.push("/");
+    }
+  }
+
+  withdrawMore = () => {
+    history.push("/");
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -44,32 +46,16 @@ class PageThree extends Component {
     };
 
     return (
-      <Card title="Login" className="pre-login-card">
+      <Card title="Summary" className="pre-login-card">
         <Form onSubmit={this.handleSubmit}>
           <FormItem {...formItemLayout} label="Amount Debited">
-            {getFieldDecorator("cardNumber", {
-              rules: [
-                {
-                  required: true,
-                  message: "Please input card number!",
-                  whitespace: true
-                }
-              ]
-            })(<Input />)}
+            {`Rs. ${this.props.deductedAmount}/-`}
           </FormItem>
-          <FormItem {...formItemLayout} label="Total Balance">
-            {getFieldDecorator("pin", {
-              rules: [
-                {
-                  required: true,
-                  message: "Please input pin!",
-                  whitespace: true
-                }
-              ]
-            })(<Input />)}
+          <FormItem {...formItemLayout} label="Remaining Balance">
+            {`Rs. ${this.props.balance}/-`}
           </FormItem>
           <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" onClick={this.withdrawMore}>
               Withdraw More
             </Button>
           </FormItem>
@@ -79,5 +65,10 @@ class PageThree extends Component {
   }
 }
 
+const mapStateToProps = ({ atmReducer }) => {
+  const { balance, deductedAmount } = atmReducer;
+  return { balance, deductedAmount };
+};
+
 const PageThreeForm = Form.create()(PageThree);
-export default withRouter(PageThreeForm);
+export default withRouter(connect(mapStateToProps)(PageThreeForm));

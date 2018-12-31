@@ -1,20 +1,8 @@
 import { combineReducers } from "redux";
-import demoReducer from "./demoReducer";
-
-const commonState = {
-  defaultVal: false
-};
-
-const commonReducer = (state = commonState, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import atmReducer from "./atmReducer";
 
 const appRootReducer = combineReducers({
-  commonReducer,
-  demoReducer
+  atmReducer
 });
 
 export default appRootReducer;
