@@ -60,6 +60,7 @@ class PageOne extends Component {
         <Form onSubmit={this.handleSubmit}>
           <FormItem {...formItemLayout} label="CARD NUMBER">
             {getFieldDecorator("cardNumber", {
+              initialValue: this.state.cardNumber,
               rules: [
                 {
                   required: true,
